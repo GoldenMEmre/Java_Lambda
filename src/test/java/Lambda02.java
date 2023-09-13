@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class Lambda02 {
+
     public static void main(String[] args) {
+
 
         List<Integer> sayilar = new ArrayList<>(Arrays.asList( 6, 5, 8, 7, 4, 5, 8, 4, 2, 6, 6, 5, 4, 7, 8));
 
@@ -26,6 +28,25 @@ public class Lambda02 {
         // cift sayilarin hepsinin carpimi
         ciftSayilariCarp(sayilar);
 
+        // liste içindeki min sayi
+        listedeMinSayiBul(sayilar);
+
+
+
+    }
+
+    public static void listedeMinSayiBul(List<Integer> sayilar) {
+        System.out.println("\nListedeki min elemen");
+        // Integer classı kullanarak
+        System.out.println(sayilar.stream().reduce(Integer::min));
+        // Math classı kullanarak
+        System.out.println(sayilar.stream().reduce(Math::min));
+
+        // Lambda Expression ile çözüm
+        int minSayiLambda = sayilar.stream().reduce(Integer.MAX_VALUE,(x,y) -> x<y ? x : y);
+        System.out.println(minSayiLambda);
+
+
 
     }
 
@@ -42,6 +63,7 @@ public class Lambda02 {
                 .filter(Lambda01::ciftMi)
                 .reduce(1,(a,b) -> (a*b)));//Paragraf 50 vd.'daki mantık.
 
+
     }
 
     public static void butunToplam(List<Integer> sayilar) {
@@ -51,12 +73,13 @@ public class Lambda02 {
                 .stream()
                 .reduce(0, (a, b) -> a + b));//İlk olarak a=0 oluyor. 0 ile sayilar listesinin ilk elemanı olan
         //6 toplanıyor.Bu sefer a=6 oluyor ve b listenin ikinci elemanı olan 5 oluyor. Bu defa a=6+5, b= 8 oluyor...vd
-
         Integer toplam = sayilar.stream().reduce(0, (a, b) -> a + b);//Bu şekilde yukarıda bulduğumuz sayıyı
         System.out.println("genel toplam :"+toplam);//bir yere kaydetmiş olduk.Data type (Integer) belirlendiği için
         //sonuç aşağıdakinden farklı olarak, optional gelmiyor.
         System.out.println(sayilar.stream().reduce(Integer::sum));//Burada yukarıdaki gibi lambda ile değil Math
+
     }//class'ından hazır bir metot kullanarak aynı işlemi yapmış olduk.
+
     public static void maxSayiBul(List<Integer> sayilar) {
 
         System.out.println("\nListedeki en büyük sayi");
@@ -64,6 +87,7 @@ public class Lambda02 {
                 .stream()
                 .reduce(Math::max));
         Optional<Integer> maxSayi = sayilar.stream().reduce(Math::max);//Optional farklı bir kaynaktan geliyor demek.
+
     }
 
     public static void ciftSayiKarakokPrnt(List<Integer> sayilar) {
@@ -82,6 +106,7 @@ public class Lambda02 {
         bütün sayıların max, min, çarpımı
          */
     }
+
     public static void tekSayilarinKupuEksiIki(List<Integer> sayilar) {
 
         System.out.println("\nTek sayilarin kupu - 2");
@@ -99,5 +124,6 @@ public class Lambda02 {
                 .stream()
                 .map(t->(t*t*t)+1)
                 .forEach(Lambda01::yazdir);
+
     }
 }

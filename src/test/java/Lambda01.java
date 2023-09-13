@@ -41,23 +41,19 @@ public class Lambda01 {
         //[1]
         System.out.println("\n50 sayisindan kucuk cift sayilari yazdiralim");
         elliSayisindanKucukCiftSayilariYazdir(sayilar);
-        //{1}
+        //{1} Ben yaptım
         System.out.println("\n50 sayisindan buyuk cift sayilari yazdiralim");
         elliSayisindanBuyukCiftSayilariYazdir(sayilar);
-
     }
     //{2}
     public static void elliSayisindanBuyukCiftSayilariYazdir(List<Integer> sayilar) {
-
         //sayilar.stream().filter(Lambda01::ciftMi).filter(t-> t>50).forEach(Lambda01::yazdir);
         sayilar.stream().filter(Lambda01::ciftMi).filter(Lambda01::ellidenBuyukMu).forEach(Lambda01::yazdir);
     }
-    //{3}
+    //{3}Ben yaptım
     public static Boolean ellidenBuyukMu(Integer a){
-
         return a>50;
     }
-
     //[2]
     public static void elliSayisindanKucukCiftSayilariYazdir(List<Integer> sayilar) {
 
